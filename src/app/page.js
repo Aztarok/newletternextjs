@@ -1,113 +1,123 @@
-import Image from 'next/image'
+"use client";
+
+import { useRouter } from "next/navigation";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+	const [emailText, setEmailText] = useState("");
+	const [answer, setAnswer] = useState(false);
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+	const router = useRouter();
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
+	function handleSubmit(e) {
+		e.preventDefault();
+		const error = document.getElementById("errors");
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+		if (emailText !== "" && error.style.display === "") {
+			router.push("/success");
+		}
+	}
+	// useEffect(
+	//     const timeoutFn = setTimeout(() => {setAnswer((isEmail(emailText)))},100)
+	//     return () => clearTimeout(timeoutFn), [handleText()])
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+	useEffect(() => {
+		const timeoutFn = setTimeout(() => {
+			checkInput();
+		}, 100);
+		console.log(answer);
+		return () => clearTimeout(timeoutFn);
+	}, [handleText]);
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+	function handleText(e) {
+		setEmailText(e);
+	}
+
+	function checkInput() {
+		const email = document.querySelector("input");
+		const error = document.getElementById("errors");
+
+		if (!isEmail(emailText)) {
+			email.style.background = "hsla(4, 100%, 67%, 0.3)";
+			email.style.color = "hsl(4, 100%, 67%)";
+			error.style.display = "block";
+		} else {
+			email.style.background = "";
+			email.style.color = "";
+			error.style.display = "";
+		}
+	}
+
+	function isEmail(email) {
+		return /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/.test(email);
+	}
+
+	return (
+		<main className="flex justify-center items-center h-screen bg-darkSlateGray">
+			<div className="flex w-[50%] h-[74%] bg-sky-50 border-sky-50 border-[20px] rounded-3xl">
+				<div className="flex flex-col  text-slate-700 pl-10 pt-10 font-bold w-[50%] bg-sky-50">
+					<span className="text-5xl">Stay updated!</span>
+					<br />
+
+					<div>
+						<span className="">
+							Join 60,000+ product managers receiving monthly
+							updates on:
+						</span>
+						<div className="pt-5 flex flex-col gap-y-2">
+							<div className="flex gap-x-4">
+								<img src="/icon-list.svg" alt="icon" />
+								<p>
+									Product discovery and building what matters
+								</p>
+							</div>
+							<div className="flex gap-x-4">
+								<img src="/icon-list.svg" alt="icon" />
+								<p>Measuring to ensure updates are a success</p>
+							</div>
+							<div className="flex gap-x-4">
+								<img src="/icon-list.svg" alt="icon" />
+								<p>And much more!</p>
+							</div>
+						</div>
+
+						<form
+							onSubmit={(e) => handleSubmit(e)}
+							className="flex flex-col pt-10"
+						>
+							<div className="flex">
+								<label htmlFor="email" className="text-sm pb-2">
+									Email address
+								</label>
+								<div
+									className="text-sm pb-2 ml-auto text-tomato hidden"
+									id="errors"
+								>
+									{<p>Valid email required</p>}
+								</div>
+							</div>
+							<input
+								onChange={(e) => handleText(e.target.value)}
+								name="email"
+								id="email"
+								required=""
+								type="text"
+								className="p-4 text-sm border-darkSlateGray border-[2.5px] rounded-md "
+								placeholder="email@company.com"
+							/>
+							<button
+								type="submit"
+								className="mt-5 p-4 text-sm text-white rounded-lg bg-darkSlateGray flex justify-center"
+							>
+								Subscribe to monthly newsletter
+							</button>
+						</form>
+					</div>
+				</div>
+				<div className="flex justify-end w-[50%] bg-sky-50 rounded-r-2xl">
+					<img src="/illustration-sign-up-desktop.svg" alt="image" />
+				</div>
+			</div>
+		</main>
+	);
 }
