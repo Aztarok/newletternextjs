@@ -18,7 +18,7 @@ const EmailTransfer = () => {
 			           {" "}
 			<img
 				className="sm:pt-0 pt-32"
-				src="/icon-list.svg"
+				src="/nextjs-github-pages/icon-list.svg"
 				width={50}
 				alt="checkmark"
 			/>
