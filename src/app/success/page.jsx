@@ -12,3 +12,4 @@ const page = () => {
 };
 
 export default page;
+// "static": "next build && touch ./out/.nojekyll && echo 'https://www.aztarok.github.io/newletternextjs' > .out/CNAME",

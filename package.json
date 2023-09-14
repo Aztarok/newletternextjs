@@ -7,7 +7,6 @@
 		"dev": "next dev",
 		"predeploy": "npm run build",
 		"deploy": "gh-pages -d out -t true",
-		"static": "next build && touch ./out/.nojekyll && echo 'https://www.aztarok.github.io/newletternextjs' > .out/CNAME",
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint"
