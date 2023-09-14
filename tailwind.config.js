@@ -10,6 +10,10 @@ module.exports = {
 			colors: {
 				darkSlateGray: "hsl(234, 29%, 20%)",
 				tomato: "hsl(4, 100%, 67%)",
+				lightTomato: "hsl(4, 100%, 67%, 0.2)",
+				charcoalGray: "hsl(235, 18%, 26%)",
+				grayBetter: "hsl(231, 7%, 60%)",
+				whiteBetter: "hsl(0, 0%, 100%)",
 			},
 			backgroundImage: {
 				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
